@@ -38,8 +38,8 @@ function DoPreset () {
             `)
         // F35最佳發射角度為軌道10度，舵機40度。
         // 最佳發射速度為80%，馬達速度204
-        Angle = 40
-        MoterSpeed = 255
+        Angle = 63
+        MoterSpeed = 204
     } else if (Preset == 2) {
         // 顯示幻象2000圖示
         basic.showLeds(`
@@ -51,7 +51,7 @@ function DoPreset () {
             `)
         // 幻象2000最佳發射角度為軌道20度，舵機63度。
         // 最佳發射速度為100%，馬達速度255
-        Angle = 63
+        Angle = 10
         MoterSpeed = 255
     }
     // 設定速度角度參數到設備中。
@@ -82,9 +82,9 @@ function DoAngle () {
             `)
     } else if (Angle == 63) {
         basic.showLeds(`
-            . # . . #
-            # . # . #
-            # . # . #
+            . # . . .
+            # . # . .
+            # . # . .
             # # # . #
             # . # . #
             `)
@@ -270,13 +270,19 @@ input.onButtonPressed(Button.B, function () {
         // 63度 -> 發射軌道20度
         // 90度 -> 發射軌道30度
         // 之間循環
-        if (Angle == 0) {
+        if (Angle == 10) {
             // Preset:
             // 0->F16 角度10度
             // 1->F35 角度20度
             // 2->幻象2000 角度0度
-            Angle = 45
-        } else if (Angle == 45) {
+            Angle = 40
+        } else if (Angle == 40) {
+            // Preset:
+            // 0->F16 角度10度
+            // 1->F35 角度20度
+            // 2->幻象2000 角度0度
+            Angle = 63
+        } else if (Angle == 63) {
             // Preset:
             // 0->F16 角度10度
             // 1->F35 角度20度
@@ -287,7 +293,7 @@ input.onButtonPressed(Button.B, function () {
             // 0->F16 角度10度
             // 1->F35 角度20度
             // 2->幻象2000 角度0度
-            Angle = 0
+            Angle = 10
         }
         // 顯示相關畫面及設定速度角度參數到設備中。
         DoAngle()
